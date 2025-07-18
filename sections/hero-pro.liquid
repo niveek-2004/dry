@@ -1,0 +1,131 @@
+{% schema %}
+{
+  "name": "Hero Profesional",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Imagen principal"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Título principal",
+      "default": "Renueva tu coche con EcoDryWax"
+    },
+    {
+      "type": "text",
+      "id": "hero_subtitle",
+      "label": "Subtítulo",
+      "default": "Limpieza y brillo profesional en minutos. ¡Sin agua!"
+    },
+    {
+      "type": "text",
+      "id": "hero_cta",
+      "label": "Texto del botón",
+      "default": "Comprar ahora"
+    },
+    {
+      "type": "url",
+      "id": "hero_cta_link",
+      "label": "Enlace del botón"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.hero-pro-section {
+  width: 100vw;
+  min-height: 540px;
+  background: linear-gradient(115deg,#212428 60%, #2b3034 100%);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 58px 0 48px 0;
+  font-family: 'Inter', Arial, sans-serif;
+}
+.hero-pro-content {
+  display: flex;
+  align-items: center;
+  gap: 54px;
+  max-width: 1200px;
+  width: 100vw;
+  padding: 0 5vw;
+  justify-content: space-between;
+}
+.hero-pro-img {
+  max-width: 410px;
+  width: 32vw;
+  min-width: 180px;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #0003, 0 1.5px 8px #0002;
+  background: #26282c;
+}
+.hero-pro-text {
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.hero-pro-title {
+  font-size: 2.7rem;
+  font-weight: 800;
+  color: #ffd600;
+  margin-bottom: 8px;
+  letter-spacing: .01em;
+}
+.hero-pro-subtitle {
+  font-size: 1.22rem;
+  color: #fff;
+  opacity: 0.93;
+  font-weight: 400;
+  margin-bottom: 36px;
+}
+.hero-pro-cta {
+  background: #ffd600;
+  color: #232323;
+  padding: 14px 38px;
+  font-weight: 700;
+  border: none;
+  border-radius: 42px;
+  font-size: 1.22rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 18px #ffd60033;
+  cursor: pointer;
+  transition: background 0.16s, color 0.16s;
+  text-decoration: none;
+  display: inline-block;
+}
+.hero-pro-cta:hover {
+  background: #181818;
+  color: #ffd600;
+}
+@media (max-width: 900px) {
+  .hero-pro-content { flex-direction: column; gap: 32px; }
+  .hero-pro-title { font-size: 1.7rem; }
+  .hero-pro-img { width: 84vw; min-width: 140px; }
+}
+</style>
+
+<div class="hero-pro-section">
+  <div class="hero-pro-content">
+    {% if section.settings.hero_image != blank %}
+      <img src="{{ section.settings.hero_image | image_url: width:600 }}" alt="Hero EcoDryWax" class="hero-pro-img" loading="lazy">
+    {% endif %}
+    <div class="hero-pro-text">
+      <div class="hero-pro-title">
+        {{ section.settings.hero_title }}
+      </div>
+      <div class="hero-pro-subtitle">
+        {{ section.settings.hero_subtitle }}
+      </div>
+      {% if section.settings.hero_cta != blank and section.settings.hero_cta_link != blank %}
+        <a href="{{ section.settings.hero_cta_link }}" class="hero-pro-cta">
+          {{ section.settings.hero_cta }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</div>
