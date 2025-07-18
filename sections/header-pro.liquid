@@ -1,0 +1,127 @@
+{% schema %}
+{
+  "name": "Header Pro",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "text",
+      "id": "menu1_label",
+      "label": "Enlace 1 (Texto)",
+      "default": "Inicio"
+    },
+    {
+      "type": "url",
+      "id": "menu1_link",
+      "label": "Enlace 1 (URL)"
+    },
+    {
+      "type": "text",
+      "id": "menu2_label",
+      "label": "Enlace 2 (Texto)",
+      "default": "Productos"
+    },
+    {
+      "type": "url",
+      "id": "menu2_link",
+      "label": "Enlace 2 (URL)"
+    },
+    {
+      "type": "text",
+      "id": "menu3_label",
+      "label": "Enlace 3 (Texto)",
+      "default": "Contacto"
+    },
+    {
+      "type": "url",
+      "id": "menu3_link",
+      "label": "Enlace 3 (URL)"
+    }
+  ]
+}
+{% endschema %}
+
+<style>
+.header-pro-bar {
+  width: 100vw;
+  max-width: 100%;
+  background: #191c1e;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 72px;
+  box-shadow: 0 1.5px 18px 0 rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-pro-content {
+  width: 100%;
+  max-width: 1260px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2vw;
+  gap: 28px;
+}
+.header-pro-logo img {
+  height: 38px;
+  width: auto;
+  border-radius: 9px;
+  background: #222;
+  padding: 2.5px 6px;
+}
+.header-pro-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.header-pro-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.08rem;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background 0.15s, color 0.15s;
+  letter-spacing: 0.01em;
+  opacity: 0.94;
+}
+.header-pro-link:hover {
+  background: #ffd60015;
+  color: #ffd600;
+  opacity: 1;
+}
+@media (max-width: 750px) {
+  .header-pro-content { flex-direction: column; gap: 10px; padding: 6px 2vw; }
+  .header-pro-menu { gap: 16px; }
+  .header-pro-logo img { height: 34px; }
+}
+</style>
+
+<header class="header-pro-bar">
+  <div class="header-pro-content">
+    <div class="header-pro-logo">
+      {% if section.settings.logo != blank %}
+        <img src="{{ section.settings.logo | image_url: width:200 }}" alt="Logo" loading="lazy">
+      {% else %}
+        <span style="font-size:1.25rem;font-weight:800;letter-spacing:.01em;">EcoDryWax</span>
+      {% endif %}
+    </div>
+    <nav class="header-pro-menu">
+      {% if section.settings.menu1_link != blank %}
+        <a class="header-pro-link" href="{{ section.settings.menu1_link }}">{{ section.settings.menu1_label }}</a>
+      {% endif %}
+      {% if section.settings.menu2_link != blank %}
+        <a class="header-pro-link" href="{{ section.settings.menu2_link }}">{{ section.settings.menu2_label }}</a>
+      {% endif %}
+      {% if section.settings.menu3_link != blank %}
+        <a class="header-pro-link" href="{{ section.settings.menu3_link }}">{{ section.settings.menu3_label }}</a>
+      {% endif %}
+    </nav>
+  </div>
+</header>
