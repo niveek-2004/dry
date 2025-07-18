@@ -8,5 +8,21 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "sections": {
+      "header-pro": {
+        "type": "header-pro",
+        "settings": {
+          "logo": "shopify://shop_images/logo-wax.svg",
+          "menu1_label": "Inicio",
+          "menu1_link": "",
+          "menu2_label": "Productos",
+          "menu2_link": "",
+          "menu3_label": "Contacto",
+          "menu3_link": ""
+        }
+      }
+    },
+    "content_for_index": []
+  }
 }
